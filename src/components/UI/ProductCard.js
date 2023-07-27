@@ -21,7 +21,7 @@ const ProductCard = () => {
           <div className="card-actions justify-between items-center mt-2">
             <div className="badge badge-outline py-2">Stock In</div>
             {/* <div className="badge badge-outline">Products</div> */}
-            <ProductRating rating={1} />
+            <ProductRating rating={3.5} />
           </div>
         </div>
       </div>

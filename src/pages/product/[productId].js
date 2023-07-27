@@ -3,10 +3,20 @@ import Image from "next/image";
 import ProuctImage from "@/assets/Images/demo-ram.jpg";
 import ProductRating from "@/components/UI/ProductRating";
 import { Icon } from "@iconify/react";
+import Head from "next/head";
 
 const ProductDetailsPage = () => {
   return (
     <div className="my-5 ">
+      <Head>
+        <title>Product Details</title>
+        <meta
+          name="description"
+          content="This is a Custom PC Build and Pc Accessories Saling Website"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <Image className="mx-auto my-auto" src={ProuctImage} alt="" />
