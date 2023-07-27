@@ -40,7 +40,7 @@ const ProductRating = ({ rating }) => {
           className="w-6 h-6 text-gray-300"
         />
       ))}
-      <p className="ml-2">({rating})</p>
+      <p className="ml-2">({rating} out of 5)</p>
     </div>
   );
 };
