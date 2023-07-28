@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import NotFoundImage from "@/assets/Images/notfound.jpg";
 import Link from "next/link";
 import { useRouter } from "next/router";

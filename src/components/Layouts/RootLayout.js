@@ -148,7 +148,7 @@ const RootLayout = ({ children }) => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link href="/login" className="text-2xl cursor-pointer">
+            <Link href="/auth/login" className="text-2xl cursor-pointer">
               Login
             </Link>
           </div>

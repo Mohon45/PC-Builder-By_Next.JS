@@ -10,7 +10,7 @@ const BuilCatagoryProductPage = () => {
   const { buildCatagory } = router.query;
   console.log(buildCatagory);
   return (
-    <div className="w-[80%] mx-auto my-5">
+    <div className="w-[100%] md:w-[80%] mx-auto my-5">
       <Head>
         <title>Select Accessories</title>
         <meta
@@ -24,15 +24,15 @@ const BuilCatagoryProductPage = () => {
       <h1 className="text-3xl font-semibold mb-5">
         Select accessories for your building computer
       </h1>
-      <div className="h-[200px] bg-[#F2F4F8] px-5 rounded-md flex justify-between items-center">
-        <div className="flex">
+      <div className="md:h-[200px] bg-[#F2F4F8] px-5 rounded-md flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col text-center md:text-left md:flex-row">
           <Image
-            className="w-[200px] h-[150px] my-auto"
+            className="w-[200px] h-[150px] my-auto mx-auto"
             src={ProuctImage}
             alt=""
           />
-          <div className="ml-8">
-            <h1 className="text-xl font-semibold">
+          <div className="md:ml-8">
+            <h1 className="text-xl font-semibold my-5 md:my-0">
               CRYORIG Socket sTR4 (AMD Threadripper) Upgrade Kit
             </h1>
             <ul type="circle" className="list-outside text-md">
