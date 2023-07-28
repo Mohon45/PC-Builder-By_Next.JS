@@ -1,12 +1,14 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ProductCard from "@/components/UI/ProductCard";
 import capitalizeFirstLetter from "@/utils/camleCaseConvert";
+import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
-const CategoryPage = () => {
+const CategoryPage = ({ products }) => {
   const router = useRouter();
   const { categoryType } = router.query;
+
   return (
     <div className="my-5">
       <Head>
@@ -24,12 +26,11 @@ const CategoryPage = () => {
           : "Others Accessories"}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mx-auto">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products?.map((item, index) => (
+          <div key={index}>
+            <ProductCard product={item} />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -39,4 +40,33 @@ export default CategoryPage;
 
 CategoryPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticPaths = async () => {
+  const res = await fetch("http://localhost:5000/api/v1/products");
+  const products = await res.json();
+  const paths = products?.data?.map((product) => {
+    if (product.category === ("GPU" || "Mouse" || "Keyboard")) {
+      return { params: { categoryType: "others" } };
+    } else {
+      return { params: { categoryType: product.category } };
+    }
+  });
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const result = await axios
+    .get(`http://localhost:5000/api/v1/products/${params.categoryType}`)
+    .then((res) => {
+      return res.data?.data;
+    })
+    .catch((error) => console.log(error));
+
+  return {
+    props: {
+      products: result,
+    },
+  };
 };

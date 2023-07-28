@@ -4,8 +4,11 @@ import ProuctImage from "@/assets/Images/demo-ram.jpg";
 import ProductRating from "@/components/UI/ProductRating";
 import { Icon } from "@iconify/react";
 import Head from "next/head";
+import axios from "axios";
+import capitalizeFirstLetter from "@/utils/camleCaseConvert";
 
-const ProductDetailsPage = () => {
+const ProductDetailsPage = ({ product }) => {
+  console.log(product);
   return (
     <div className="my-5 ">
       <Head>
@@ -19,18 +22,24 @@ const ProductDetailsPage = () => {
       </Head>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div>
-          <Image className="mx-auto my-auto" src={ProuctImage} alt="" />
+          <Image
+            className="mx-auto my-auto"
+            src={product?.image}
+            alt=""
+            width={300}
+            height={100}
+          />
         </div>
         <div>
           <h1 className="text-3xl font-semibold text-[#18AE91]">
-            APACER 4GB DDR4 2400Mhz Panther Golden Desktop Ram
+            {product?.productName}
           </h1>
           <div className="flex my-5 ">
             <p className="bg-[#F5F6FC] text-lg px-5 pb-2 rounded-full mr-3">
-              Price : 2000 <span className="text-2xl">&#2547;</span>
+              Price : {product?.price} <span className="text-2xl">&#2547;</span>
             </p>
             <p className="bg-[#F5F6FC] text-lg px-5 py-2 rounded-full mr-3">
-              Status : In Stock
+              Status : {product?.status}
             </p>
           </div>
           <div>
@@ -38,37 +47,24 @@ const ProductDetailsPage = () => {
               Key Features
             </h1>
             <div className="mt-5 text-lg font-semibold">
-              <h2>Model : Model: PRO MP241X</h2>
-              <h2>Category : RAM</h2>
+              <h2>Model : {product?.model}</h2>
+              <h2>Category : {capitalizeFirstLetter(product?.category)}</h2>
 
               <h2 className="flex">
                 <span className="mr-3">Rating :</span>{" "}
-                {<ProductRating rating={3.5} />}
+                {<ProductRating rating={product?.rating} />}
               </h2>
             </div>
           </div>
         </div>
       </div>
-      <hr className="border-2 border-[#18AE91]" />
+      <hr className="border-2 border-[#18AE91] my-3" />
       <div>
         <h1 className="text-3xl font-semibold my-4">Description</h1>
         <p className="w-[80%] mx-auto text-justify text-lg mb-4">
-          <span className="text-2xl font-bold">
-            APACER 4GB DDR4 2400Mhz Panther Golden Desktop Ram
-          </span>{" "}
+          <span className="text-2xl font-bold">{product?.productName}</span>{" "}
           <br />
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo
-          reprehenderit mollitia excepturi tenetur quos, porro quae, in
-          recusandae voluptatem harum saepe minus, aspernatur similique odit
-          fuga. Totam fugit porro, repellat, illum similique est odio animi,
-          incidunt iusto corporis itaque laborum ipsam dolor nisi voluptatibus
-          perferendis! Porro blanditiis suscipit expedita aperiam obcaecati
-          deleniti, corrupti, sunt, labore ex similique nisi. Facilis temporibus
-          minus deserunt nobis similique veniam perspiciatis aliquam omnis atque
-          quod architecto nulla nihil aliquid suscipit, eius delectus, ducimus
-          ratione fugiat eveniet explicabo! Facere impedit aliquid inventore.
-          Quos quas cum dicta sint, iusto fugit voluptate ipsum aut dolor non
-          optio sed.
+          {product?.description}
         </p>
       </div>
       <hr className="border-2 border-[#18AE91]" />
@@ -104,7 +100,7 @@ const ProductDetailsPage = () => {
       <div>
         <div className="flex justify-between my-2">
           <div>
-            <h2 className="text-3xl font-semibold">Reviews (0)</h2>
+            <h2 className="text-3xl font-semibold">Reviews (10)</h2>
             <p className="text-lg">
               Get specific details about this product from customers who own it.
             </p>
@@ -114,18 +110,22 @@ const ProductDetailsPage = () => {
           </button>
         </div>
         <hr />
-        <div className="hero h-[300px] bg-base-200 rounded-md">
-          <div className="hero-content text-center">
-            <div className="max-w-md">
-              <div className="w-[70px] mx-auto h-[70px] bg-slate-300 rounded-full p-3">
-                <Icon icon="pajamas:review-list" width={47} />
+        <div className="hero bg-base-200 rounded-md px-10 py-3 flex flex-col">
+          {product?.reviews?.map((item, index) => (
+            <div
+              className="w-[100%] flex items-center bg-[#18AE91] rounded-md px-10 py-5 mb-3 "
+              key={index}
+            >
+              <Icon
+                icon="carbon:user-avatar-filled"
+                width={50}
+                color="#FFFFFF"
+              />
+              <div className="ml-5 text-[#FFFFFF]">
+                <p>{item}</p>
               </div>
-              <p className="py-6">
-                This product has no reviews yet. Be the first one to write a
-                review.
-              </p>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
@@ -136,4 +136,29 @@ export default ProductDetailsPage;
 
 ProductDetailsPage.getLayout = function getLayout(page) {
   return <RootLayout>{page}</RootLayout>;
+};
+
+export const getStaticPaths = async () => {
+  const res = await fetch("http://localhost:5000/api/v1/products");
+  const products = await res.json();
+  const paths = products?.data?.map((product) => ({
+    params: { productId: product._id },
+  }));
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps = async ({ params }) => {
+  const result = await axios
+    .get(`http://localhost:5000/api/v1/product/${params.productId}`)
+    .then((res) => {
+      return res.data?.data;
+    })
+    .catch((error) => console.log(error));
+
+  return {
+    props: {
+      product: result,
+    },
+  };
 };

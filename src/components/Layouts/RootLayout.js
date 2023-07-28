@@ -75,7 +75,7 @@ const RootLayout = ({ children }) => {
                 </Link>
               </li>
               <li
-                tabIndex={0}
+                // tabIndex={0}
                 className="border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
               >
                 <details>
