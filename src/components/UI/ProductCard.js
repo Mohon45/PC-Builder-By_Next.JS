@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const ProductCard = () => {
   return (
-    <Link href="/product/1">
-      <div className="card w-96  shadow-xl">
+    <div className="card w-96 mx-auto shadow-xl">
+      <Link href="/product/1">
         <figure>
           <Image src={ProuctImage} alt="" className="w-[300px] h-[250px]" />
         </figure>
@@ -24,8 +24,8 @@ const ProductCard = () => {
             <ProductRating rating={3.5} />
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

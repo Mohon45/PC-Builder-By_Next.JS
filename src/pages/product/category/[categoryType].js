@@ -23,7 +23,7 @@ const CategoryPage = () => {
           ? `All ${capitalizeFirstLetter(categoryType)} Accessories`
           : "Others Accessories"}
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mx-auto">
         <ProductCard />
         <ProductCard />
         <ProductCard />

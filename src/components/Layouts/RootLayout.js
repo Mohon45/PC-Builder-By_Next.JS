@@ -70,7 +70,7 @@ const RootLayout = ({ children }) => {
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 text-lg">
               <li className="border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91]">
-                <Link href="/pc-build" className="hover:text-[#FFFFFF]">
+                <Link href="/pc-builder" className="hover:text-[#FFFFFF]">
                   <button>PC Builder</button>
                 </Link>
               </li>
