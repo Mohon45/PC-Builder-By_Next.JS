@@ -139,8 +139,15 @@ ProductDetailsPage.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/products");
-  const products = await res.json();
+  const products = await axios
+    .get("https://pc-builder-server.onrender.com/api/v1/products")
+    .then((res) => {
+      return res.data || [];
+    })
+    .catch((error) => {
+      return { paths: [], fallback: false };
+    });
+
   const paths = products?.data?.map((product) => ({
     params: { productId: product._id },
   }));
@@ -150,7 +157,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const result = await axios
-    .get(`http://localhost:5000/api/v1/product/${params.productId}`)
+    .get(
+      `https://pc-builder-server.onrender.com/api/v1/product/${params.productId}`
+    )
     .then((res) => {
       return res.data?.data;
     })
@@ -158,7 +167,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      product: result,
+      product: result || {},
     },
   };
 };

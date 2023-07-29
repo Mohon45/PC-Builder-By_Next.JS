@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
             Catagory : {capitalizeFirstLetter(product?.category)}
           </h3>
           <p className="text-xl">
-            Price : {product?.price} <span className="text-2xl">&#2547;</span>
+            Price : {product?.price} <span className="text-2xl">$</span>
           </p>
           <div className="card-actions justify-between items-center mt-2">
             <div className="badge badge-outline py-2 text-lg px-3">

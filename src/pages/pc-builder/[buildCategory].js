@@ -85,7 +85,9 @@ BuilCatagoryProductPage.getLayout = function getLayout(page) {
 
 export const getServerSideProps = async ({ params }) => {
   const result = await axios
-    .get(`http://localhost:5000/api/v1/products/${params.buildCategory}`)
+    .get(
+      `https://pc-builder-server.onrender.com/api/v1/products/${params.buildCategory}`
+    )
     .then((res) => {
       return res.data?.data;
     })
@@ -93,7 +95,7 @@ export const getServerSideProps = async ({ params }) => {
 
   return {
     props: {
-      products: result,
+      products: result || [],
     },
   };
 };

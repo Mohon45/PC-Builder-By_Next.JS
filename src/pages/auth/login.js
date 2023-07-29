@@ -1,5 +1,6 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import { Icon } from "@iconify/react";
+import { signIn } from "next-auth/react";
 
 const LoginPage = () => {
   return (
@@ -15,11 +16,25 @@ const LoginPage = () => {
           <div className="w-[100%] md:w-[50%]card flex-shrink-0 max-w-sm shadow-2xl bg-base-100 rounded-md">
             <div className="card-body">
               <h1 className="text-center text-3xl font-semibold">Log In</h1>
-              <div className="px-8 py-2 my-4 flex items-center rounded-md border-2 border-[#18AE91]">
+              <div
+                className="px-8 py-2 my-4 flex items-center rounded-md border-2 border-[#18AE91] cursor-pointer"
+                onClick={() =>
+                  signIn("github", {
+                    callbackUrl: "http://localhost:3000/",
+                  })
+                }
+              >
                 <Icon icon="icon-park:github" width={40} />
                 <p className="ml-5 text-xl font-semibold">Log in with Github</p>
               </div>
-              <div className="px-8 py-2 my-4 flex items-center rounded-md border-2 border-[#18AE91]">
+              <div
+                className="px-8 py-2 my-4 flex items-center rounded-md border-2 border-[#18AE91] cursor-pointer"
+                onClick={() =>
+                  signIn("google", {
+                    callbackUrl: "http://localhost:3000/",
+                  })
+                }
+              >
                 <Icon icon="flat-color-icons:google" width={40} />
                 <p className="ml-5 text-xl font-semibold">Log in with Google</p>
               </div>

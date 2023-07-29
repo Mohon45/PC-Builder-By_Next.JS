@@ -43,7 +43,9 @@ CategoryPage.getLayout = function getLayout(page) {
 };
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:5000/api/v1/products");
+  const res = await fetch(
+    "https://pc-builder-server.onrender.com/api/v1/products"
+  );
   const products = await res.json();
   const paths = products?.data?.map((product) => {
     if (product.category === ("GPU" || "Mouse" || "Keyboard")) {
@@ -58,7 +60,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const result = await axios
-    .get(`http://localhost:5000/api/v1/products/${params.categoryType}`)
+    .get(
+      `https://pc-builder-server.onrender.com/api/v1/products/${params.categoryType}`
+    )
     .then((res) => {
       return res.data?.data;
     })
@@ -66,7 +70,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      products: result,
+      products: result || [],
     },
   };
 };

@@ -416,12 +416,30 @@ const PcBuilderPage = () => {
           <button
             className="btn outline outline-[#18AE91] text-[#18AE91] ml-5 hover:bg-[#18AE91] hover:text-[#FFFFFF] hover:outline-none"
             disabled={Object.keys(products).length === 6 ? false : true}
+            onClick={() => window.my_modal_5.showModal()}
           >
             Complete Build{" "}
             <span>
               <Icon icon="el:ok-circle" width={20} />
             </span>
           </button>
+          <dialog
+            id="my_modal_5"
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <form method="dialog" className="modal-box">
+              <h3 className="font-bold text-lg text-center text-[#18AE91]">
+                Your Pc Complited!
+              </h3>
+              <hr className="border-1 border-[#18AE91] my-3" />
+              <p className="py-4 text-lg font-semibold">
+                Your Total Cost : {total} $
+              </p>
+              <div className="modal-action">
+                <button className="btn">Close</button>
+              </div>
+            </form>
+          </dialog>
         </div>
       </div>
     </div>

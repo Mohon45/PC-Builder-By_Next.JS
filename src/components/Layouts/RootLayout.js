@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 import Logo from "@/assets/Images/pc-builder-logo.png";
 
 const RootLayout = ({ children }) => {
+  const { data: session } = useSession();
   const customCSS = {
     text: "#FFFFFF",
   };
@@ -34,7 +36,7 @@ const RootLayout = ({ children }) => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  bg-[#202D3D] rounded-box w-52"
               >
                 <li className="border-b-2 border-b-[#202D3D]  hover:border-b-[#FFFFFF]">
-                  <Link href="/pc-build" className="hover:text-[#18AE91]">
+                  <Link href="/pc-builder" className="hover:text-[#18AE91]">
                     <button> PC Builder</button>
                   </Link>
                 </li>
@@ -63,7 +65,10 @@ const RootLayout = ({ children }) => {
                 </li>
               </ul>
             </div>
-            <Link className="btn btn-ghost normal-case text-xl" href="/">
+            <Link
+              className="invisible md:visible btn btn-ghost normal-case text-xl"
+              href="/"
+            >
               <Image src={Logo} alt="logo" className="w-[200px]" />
             </Link>
           </div>
@@ -148,9 +153,21 @@ const RootLayout = ({ children }) => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link href="/auth/login" className="text-2xl cursor-pointer">
-              Login
-            </Link>
+            {session?.user ? (
+              <h1
+                className="text-2xl cursor-pointer outline outline-[#18AE91] px-3 py-1 rounded-md"
+                onClick={() => signOut()}
+              >
+                Log Out
+              </h1>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="text-2xl cursor-pointer outline outline-[#18AE91] px-3 py-1 rounded-md"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
