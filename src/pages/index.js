@@ -31,7 +31,6 @@ const HomePage = ({ homeProducts }) => {
         <>
           <Banner />
           <div className="my-8">
-            <FeaturedCategoryPage />
             <h1 className="text-3xl my-5 font-semibold text-[#18AE91]">
               Trending Accessories
             </h1>
@@ -42,6 +41,7 @@ const HomePage = ({ homeProducts }) => {
                 </div>
               ))}
             </div>
+            <FeaturedCategoryPage />
           </div>
         </>
       ) : (
