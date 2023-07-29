@@ -15,7 +15,6 @@ const HomePage = ({ homeProducts }) => {
       ssr: false,
     }
   );
-  console.log(FeaturedCategoryPage);
   return (
     <div>
       <Head>

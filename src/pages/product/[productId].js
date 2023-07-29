@@ -8,7 +8,6 @@ import axios from "axios";
 import capitalizeFirstLetter from "@/utils/camleCaseConvert";
 
 const ProductDetailsPage = ({ product }) => {
-  console.log(product);
   return (
     <div className="my-5 ">
       <Head>
