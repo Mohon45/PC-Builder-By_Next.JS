@@ -48,12 +48,62 @@ const RootLayout = ({ children }) => {
                     <summary className="hover:text-[#FFFFFF]">
                       Categories
                     </summary>
-                    <ul className="p-2 bg-[#202D3D] text-[#FFFFFF]">
-                      <li>
-                        <a>Submenu 1</a>
+                    <ul className="w-[300px] p-2 z-10 bg-[#202D3D] text-[#FFFFFF]">
+                      <li className="focus:text-[#FFFFFF]">
+                        <Link
+                          href="/product/category/cpu"
+                          className="hover:text-[#FFFFFF] focus:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>CPU / Processor</button>
+                        </Link>
                       </li>
                       <li>
-                        <a>Submenu 2</a>
+                        <Link
+                          href="/product/category/motherboard"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>Motherboard</button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/product/category/ram"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>RAM</button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/product/category/power-supply"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>Power Supply Unit</button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/product/category/storage"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>Storage Device</button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/product/category/monitor"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>Monitor</button>
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/product/category/others"
+                          className="hover:text-[#FFFFFF] border-b-2 border-b-[#202D3D]  hover:border-b-[#18AE91] "
+                        >
+                          <button>Others</button>
+                        </Link>
                       </li>
                     </ul>
                   </details>
