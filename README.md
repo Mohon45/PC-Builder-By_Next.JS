@@ -1,5 +1,5 @@
 # PC Builder
 
-## Deployment Link:
+## Deployment Link: https://pc-builder-peach.vercel.app
 
 - Here i am Develop a PC Builder. In this Website habe many features are implement i am. You can visit this website then first you see the Home Page. The Home page you will see the Navber and bello the Sliding Banner and then Features categories section and bello the Trending Accessories section they have a random car. An the Bottom i have attachments a Footer. All the Website is Phone Responsive. You can click a Nav item Pc Builder then you have go the pc bulder page. here you can build your own pc in choose your own choice pc accesories. You can select and remove from this page.When you fullFill All the components of this pc builder then you can see the Complete Build Button is visible. if any component are missing then the button is disabled. when you can click the choose button then the page have redirect specific page you can see the accessories and the accessories page you have select the accorories. the category item is a dropdown menu you can see the dropdown all categories is here you can click any category then redirect to the category products page.
